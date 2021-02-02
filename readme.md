@@ -10,6 +10,11 @@ NOTE: kik communicates through stdout to maintain order of logs and errors witho
 
 # Usage
 
+* print a colorful header with a break of underscores
+```
+kik.Header("A Kik Example Header")
+```
+
 * send a colorful success message
 ```
 kik.Success("something went well")
