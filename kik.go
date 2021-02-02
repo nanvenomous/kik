@@ -6,23 +6,6 @@ import (
 	"runtime/debug"
 )
 
-// FailIf fails the script on an error if error exists
-func FailIf(err error) {
-	if err != nil {
-		os.Stderr.Write(debug.Stack())
-		errStr := fmt.Sprintf("%s%s%s%s", red, "[ERROR] ", nc, err)
-		errByt := []byte(errStr)
-		os.Stderr.Write(errByt)
-	}
-}
-
-// LogIf logs an error if error exists, does not fail script
-func LogIf(err error) {
-	if err != nil {
-		fmt.Println(err)
-	}
-}
-
 var (
 	nc     string
 	red    string
@@ -45,12 +28,32 @@ func init() {
 	white = "\033[37m"
 }
 
-// Red prints red
-func Red(msg string) {
-	fmt.Println(string(red), msg, string(nc))
+// FailIf fails the script on an error if error exists
+func FailIf(err error) {
+	if err != nil {
+		fmt.Println(string(debug.Stack()))
+		errStr := fmt.Sprintf("%s%s%s%s", red, "[ERROR] ", nc, err)
+		fmt.Println(errStr)
+		os.Exit(1)
+	}
 }
 
-// Green prints green
-func Green(msg string) {
-	fmt.Println(string(green), msg, string(nc))
+// WarnIf prints an error message with [WARNING] but does not fail execution
+func WarnIf(err error) {
+	if err != nil {
+		warnMessage := fmt.Sprintf("%s%s%s%s", yellow, "[WARNING] ", nc, err)
+		fmt.Println(warnMessage)
+	}
+}
+
+// Log prints the log message after the [tag] in cyan
+func Log(tag string, msg string) {
+	logMessage := fmt.Sprintf("%s[%s]%s %s", cyan, tag, nc, msg)
+	fmt.Println(logMessage)
+}
+
+// Success prints a log prefaced by [SUCCESS] in green
+func Success(msg string) {
+	succMessage := fmt.Sprintf("%s%s%s%s", green, "[SUCCESS] ", nc, msg)
+	fmt.Println(succMessage)
 }
