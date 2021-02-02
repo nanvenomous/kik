@@ -2,13 +2,17 @@ package kik
 
 import (
 	"fmt"
-	"log"
+	"os"
+	"runtime/debug"
 )
 
 // FailIf fails the script on an error if error exists
 func FailIf(err error) {
 	if err != nil {
-		log.Fatal(err)
+		os.Stderr.Write(debug.Stack())
+		errStr := fmt.Sprintf("%s%s%s%s", red, "[ERROR] ", nc, err)
+		errByt := []byte(errStr)
+		os.Stderr.Write(errByt)
 	}
 }
 

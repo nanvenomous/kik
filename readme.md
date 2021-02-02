@@ -1,2 +1,10 @@
 # Description
-very simple package for handling errors in golang
+
+kommunicate in knosole :yum:
+
+> FailIf
+
+```
+out, err = someOperation()
+kik.FailIf(err) // prints a stack trace and panics
+```
