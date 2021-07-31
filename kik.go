@@ -52,12 +52,16 @@ func System(command string) error {
 	return err
 }
 
+func printErr(err error) {
+	errStr := fmt.Sprintf("%s%s%s%s", red, "[ERROR] ", nc, err)
+	fmt.Println(errStr)
+}
+
 // FailIf fails the script on an error if error exists
 func FailIf(err error) {
 	if err != nil {
+		printErr(err)
 		fmt.Println(string(debug.Stack()))
-		errStr := fmt.Sprintf("%s%s%s%s", red, "[ERROR] ", nc, err)
-		fmt.Println(errStr)
 		os.Exit(1)
 	}
 }
