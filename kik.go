@@ -82,22 +82,12 @@ func Success(msg string) {
 	fmt.Println(succMessage)
 }
 
-func buildHeaderBreak(sym string, width int) string {
-	var b strings.Builder
-	b.Grow(width)
-	for i := 0; i < width; i++ {
-		fmt.Fprintf(&b, sym)
-	}
-	s := b.String() // no copying
-	return s
-}
-
 // Header prints a message in color with a break of underscores
 func Header(msg string) {
 	color := blue
 	headerMessage := fmt.Sprintf("%s%s%s", color, msg, nc)
-	headerBreak := buildHeaderBreak("_", len(msg))
+	headerBreak := strings.Repeat("_", len(msg))
 	coloredHeaderBreak := fmt.Sprintf("%s%s%s", color, headerBreak, nc)
-	fmt.Println(headerMessage)
 	fmt.Println(coloredHeaderBreak)
+	fmt.Println(headerMessage)
 }
