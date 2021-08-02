@@ -34,12 +34,23 @@ func printErr(err error) {
 	fmt.Fprintln(os.Stderr, errStr)
 }
 
-// FailIf fails the script on an error if error exists
-func FailIf(err error) {
+// FailDebugIf fails the script if the err is not nil
+// prints the debug stack trace
+// exits with the provided exit code
+func FailDebugIf(err error, code int) {
 	if err != nil {
 		printErr(err)
 		fmt.Fprintln(os.Stderr, string(debug.Stack()))
-		os.Exit(1)
+		os.Exit(code)
+	}
+}
+
+// FailIf fails the script if the err is not nil
+// exits with the provided exit code
+func FailIf(err error, code int) {
+	if err != nil {
+		printErr(err)
+		os.Exit(code)
 	}
 }
 
