@@ -12,6 +12,6 @@ func main() {
 	kik.Log("LogTag", "example log message")
 	err := errors.New("this is a warning")
 	kik.WarnIf(err)
-	err = errors.New("this is an error")
-	kik.FailIf(err, 1)
+	err = errors.New("this is a network error")
+	kik.FailIf(err, kik.ExitCodes.NETWORK_ERROR)
 }
