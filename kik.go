@@ -54,14 +54,14 @@ func System(command string) error {
 
 func printErr(err error) {
 	errStr := fmt.Sprintf("%s%s%s%s", red, "[ERROR] ", nc, err)
-	fmt.Println(errStr)
+	fmt.Fprintln(os.Stderr, errStr)
 }
 
 // FailIf fails the script on an error if error exists
 func FailIf(err error) {
 	if err != nil {
 		printErr(err)
-		fmt.Println(string(debug.Stack()))
+		fmt.Fprintln(os.Stderr, string(debug.Stack()))
 		os.Exit(1)
 	}
 }
