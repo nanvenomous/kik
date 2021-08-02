@@ -12,5 +12,6 @@ func main() {
 	kik.Log("LogTag", "example log message")
 	err := errors.New("this is a warning")
 	kik.WarnIf(err)
-	kik.FailIf(err)
+	err = errors.New("this is an error")
+	kik.FailIf(err, 1)
 }
