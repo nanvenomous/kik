@@ -37,4 +37,4 @@ kik.FailIf(err) // exits system with stacktrace and error message if error is fo
 kik.Log("logTag", "example log message") // will not reach this message
 ```
 
-# [Examples](https://github.com/mrgarelli/kik/tree/master/examples)
+# [Examples](./_examples)
