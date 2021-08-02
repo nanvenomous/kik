@@ -1,10 +1,8 @@
 package kik
 
 import (
-	"bytes"
 	"fmt"
 	"os"
-	"os/exec"
 	"runtime/debug"
 	"strings"
 )
@@ -29,27 +27,6 @@ func init() {
 	purple = "\033[35m"
 	cyan = "\033[36m"
 	white = "\033[37m"
-}
-
-const ShellToUse = "bash"
-
-func System(command string) error {
-	script := "script --return --quiet -c \"" + command + "\" /dev/null"
-	var stdout bytes.Buffer
-	var stderr bytes.Buffer
-	cmd := exec.Command(ShellToUse, "-c", script)
-	cmd.Stdout = &stdout
-	cmd.Stderr = &stderr
-	err := cmd.Run()
-	out := stdout.String()
-	e := stderr.String()
-	if out != "" {
-		fmt.Print(out)
-	}
-	if e != "" {
-		fmt.Print(e)
-	}
-	return err
 }
 
 func printErr(err error) {
