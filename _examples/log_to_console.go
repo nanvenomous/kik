@@ -2,8 +2,8 @@ package main
 
 import (
 	"errors"
-	"kik" // for testing
-	// "github.com/mrgarelli/kik"
+	// "kik" // for testing
+	"github.com/mrgarelli/kik"
 )
 
 func main() {
